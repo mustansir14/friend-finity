@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Friend-Finity - Your doorway to infinite friends!
+      Friend-Finity - Saare snakes
     </div>
   );
 }
