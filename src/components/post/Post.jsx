@@ -26,10 +26,10 @@ export default function Post() {
             <div className="postBottomLeft">
             <img className="likeIcon" src="assets/like.png" alt=""/>
             <img className ="heartIcon" src="assets/heart.png" alt=""/>
-            <span className="postlikeCounter">32 People like it</span>
+            <button className="postlikeCounter">32 People like it</button>
             </div>
             <div className="postBottomRight">
-            <span className="postCommentText">9 Comments</span>
+            <button className="postCommentText">9 Comments</button>
             </div>
           </div>
         </div>

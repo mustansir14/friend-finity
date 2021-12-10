@@ -16,19 +16,19 @@ export default function Share() {
             <div className="shareOptions">
                 <div className="shareOption">
                     <PermMedia htmlColor="tomato" className="shareIcon"/>
-                    <span className="shareOptionText">Photo or Video</span>
+                    <button className="shareOptionText">Photo/Video</button>
                 </div>
                 <div className="shareOption">
                     <Label htmlColor="blue" className="shareIcon"/>
-                    <span className="shareOptionText">Tag</span>
+                    <button className="shareOptionText">Tag</button>
                 </div>
                 <div className="shareOption">
                     <Room htmlColor="green" className="shareIcon"/>
-                    <span className="shareOptionText">Location</span>
+                    <button className="shareOptionText">Location</button>
                 </div>
                 <div className="shareOption">
                     <EmojiEmotions htmlColor="goldenrod" className="shareIcon"/>
-                    <span className="shareOptionText">Feelings</span>
+                    <button className="shareOptionText">Feelings</button>
                 </div>
             </div>
             <button className="shareButton">Share</button>
