@@ -1,4 +1,5 @@
 import "./sidebar.css"
+import {Users} from "../../dummyData"
 import {RssFeed,
     Chat,
     PlayCircleFilledOutlined,
@@ -8,6 +9,7 @@ import {RssFeed,
     WorkOutline,
     Event,
     School,} from '@mui/icons-material'
+import CloseFriend from "../closeFriend/CloseFriend"
 export default function sidebar() {
     return (
         <div className="sidebar">
@@ -49,38 +51,10 @@ export default function sidebar() {
                 <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
         <ul className ="sidebarFriendList">
-            <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>
-            <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>    <li className ="sidebarFriend">
-                <img className="sidebarFriendImg" src="/assets/person/1.jpeg" alt=""/>
-                <span className ="sidebarFriendName">Jane Doe</span>
-            </li>         
+                   {Users.map((u) =>(
+                       <CloseFriend key={u.id} user={u} />
+                   )
+                   )}
         </ul>
       </div>
     </div>
