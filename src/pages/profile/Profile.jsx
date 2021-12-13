@@ -7,7 +7,6 @@ import Rightbar from "../../components/rightbar/Rightbar";
 export default function Profile() {
   return (
     <>
-      <Topbar />
       <div className="profile">
         <Sidebar />
         <div className="profileRight">
@@ -25,13 +24,13 @@ export default function Profile() {
               />
             </div>
             <div className="profileInfo">
-                <h4 className="profileInfoName">Faaiz Asif</h4>
-                <span className="profileInfoDesc">Wassup Bois</span>
+              <h4 className="profileInfoName">Faaiz Asif</h4>
+              <span className="profileInfoDesc">Wassup Bois</span>
             </div>
           </div>
           <div className="profileRightBottom">
             <Feed />
-            <Rightbar profile/>
+            <Rightbar profile />
           </div>
         </div>
       </div>
