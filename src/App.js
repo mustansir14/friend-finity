@@ -9,7 +9,8 @@ function App() {
     <Router>
       <Topbar />
       <Routes>
-        <Route path={["/", "/home"]} element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
