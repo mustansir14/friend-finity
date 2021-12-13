@@ -62,7 +62,7 @@ router.route("/login").post(async (req, res) => {
     // check user password with hashed password stored in the database
     const validPassword = await bcrypt.compare(body.password, user.password);
     if (validPassword) {
-      res.status(200).json({ message: "Valid password" });
+      res.status(200).json({ message: "success" });
     } else {
       res.status(400).json({ error: "Invalid Password" });
     }
