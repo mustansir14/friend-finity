@@ -14,6 +14,8 @@ var postSchema = new Schema({
     type: Date,
     required: true,
   },
+  imageURL: String,
+  videoURL: String,
 });
 
 // Compile model from schema

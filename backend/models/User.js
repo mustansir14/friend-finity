@@ -25,10 +25,7 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
-  profilePic: {
-    data: Buffer,
-    contentType: String,
-  },
+  profilePicURL: String,
   dateOfBirth: {
     type: Date,
   },

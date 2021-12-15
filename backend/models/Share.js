@@ -18,6 +18,7 @@ var shareSchema = new Schema({
     type: Date,
     required: true,
   },
+  text: String,
 });
 
 // Compile model from schema

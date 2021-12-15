@@ -17,4 +17,4 @@ var commentLikeSchema = new Schema({
 });
 
 // Compile model from schema
-module.exports = mongoose.model("CommentLike", commentSchema);
+module.exports = mongoose.model("CommentLike", commentLikeSchema);

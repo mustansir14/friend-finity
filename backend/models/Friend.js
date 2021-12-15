@@ -4,22 +4,25 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var friendSchema = new Schema({
-  userID1: {
+  user1ID: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  userID2: {
+  user2ID: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  status: String,
+  status: {
+    type: String,
+    required: true,
+  },
   dateRequested: {
     type: Date,
     required: true,
   },
-  dateAccepted: true,
+  dateAccepted: Date,
 });
 
 // Compile model from schema
