@@ -24,7 +24,7 @@ router.route("/user/:id").get((req, res) => {
 });
 
 // add post
-router.route("/").post((req, res) => {
+router.route("/").post(async (req, res) => {
   const body = req.body;
   if (!(body.userID && body.text)) {
     return res.status(400).send({ error: "required field(s) missing" });
