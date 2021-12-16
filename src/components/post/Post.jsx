@@ -17,27 +17,27 @@ export default function Post({post}) {
             <div className="postTopLeft">
               <img
                 className="postProfileImg"
-                src={Users.filter((u)=>u.id===post.userId)[0].profilePicture} alt=""/>
+                src="" alt=""/>
               <span className="postUsername">
-              <span className="postUsername">{Users.filter((u)=>u.id===post.userId)[0].username}</span>
+              <span className="postUsername">{post.userId}</span>
               </span>
-              <span className="postDate">{post.date}</span>
+              <span className="postDate">{post.datePosted}</span>
             </div>
             <div className="postTopRight">
               <MoreVertIcon />
             </div>
           </div>
           <div className="postCenter">
-          <span className="postText">{post?.desc}</span>
-            <img className="postImg" src={post.photo} alt=""/>
+          <span className="postText">{post.text}</span>
+            <img className="postImg" src="" alt=""/>
           </div>
           <div className="postBottom">
             <div className="postBottomLeft">
             <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" />
-            <span className="postLikeCounter">{like} people like it</span>
+            <span className="postLikeCounter">15 people like it</span>
             </div>
             <div className="postBottomRight">
-            <button className="postCommentText">{post.comment} Comments</button>
+            <button className="postCommentText">15 Comments</button>
             </div>
           </div>
         </div>
