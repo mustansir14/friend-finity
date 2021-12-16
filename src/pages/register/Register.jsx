@@ -2,26 +2,26 @@ import './register.css'
 
 export default function Register() {
     return (
-        <div className="login">
-            <div className="loginWrapper">
-                <div className="loginLeft">
-                    <h3 className="loginLogo">FriendFinity</h3>
-                    <span className="loginDesc">
+        <div className="register">
+            <div className="registerWrapper">
+                <div className="registerLeft">
+                    <h3 className="registerLogo">FriendFinity</h3>
+                    <span className="registerDesc">
                         Doorway To Infinite Friends
                     </span>
                 </div>
-                <div className="loginRight">
-                <div className="loginBox">
-                    <input placeholder="First Name" className="loginInput" />
-                    <input placeholder="Last Name" className="loginInput" />
-                    <input placeholder="Email" className="loginInput" />
-                    <input placeholder="Gender" className="loginInput" />
-                    <input placeholder="City" className="loginInput" />
-                    <input placeholder="Country" className="loginInput" />
-                    <input placeholder="Password" className="loginInput" />
-                    <input placeholder="Password Again" className="loginInput" />
-                    <button className="loginButton">Sign Up</button>
-                    <button className="loginRegisterButton">
+                <div className="registerRight">
+                <div className="registerBox">
+                    <input placeholder="First Name" className="registerInput" />
+                    <input placeholder="Last Name" className="registerInput" />
+                    <input placeholder="Email" className="registerInput" />
+                    <input placeholder="Gender" className="registerInput" />
+                    <input placeholder="City" className="registerInput" />
+                    <input placeholder="Country" className="registerInput" />
+                    <input placeholder="Password" className="registerInput" />
+                    <input placeholder="Password Again" className="registerInput" />
+                    <button className="registerButton">Sign Up</button>
+                    <button className="registerRegisterButton">
                     Log into Account
             </button>
                     </div>

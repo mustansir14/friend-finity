@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
     <Router>
+      <Topbar/>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
