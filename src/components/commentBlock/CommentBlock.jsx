@@ -1,9 +1,12 @@
+import Comment from "../comment/Comment";
+import "./commentBlock.css";
+
 export default function CommentBlock({ comments }) {
   return (
-    <div>
-      {comments.map((comment) => {
-        <div>{comment._id}</div>;
-      })}
+    <div className="commentBlock">
+      {comments.map((comment) => (
+        <Comment key={comment._id} comment={comment} />
+      ))}
     </div>
   );
 }

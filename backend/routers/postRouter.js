@@ -5,7 +5,7 @@ const { cloudinary } = require("../utils/cloudinary");
 // get all posts
 router.route("/").get((req, res) => {
   Post.find({})
-    .then((posts) => res.json(posts))
+    .then((posts) => res.json(posts.reverse()))
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
@@ -19,7 +19,7 @@ router.route("/:id").get((req, res) => {
 // get posts based on userID
 router.route("/user/:id").get((req, res) => {
   Post.find({ userID: req.params.id })
-    .then((posts) => res.json(posts))
+    .then((posts) => res.json(posts.reverse()))
     .catch((err) => res.status(400).json({ Error: err }));
 });
 

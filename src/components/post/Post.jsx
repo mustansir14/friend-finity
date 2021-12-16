@@ -3,6 +3,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
+import CommentBlock from "../commentBlock/CommentBlock";
+import timeSince from "../../utils/timeSince";
 
 export default function Post({ post }) {
   const [state, setState] = useState({
@@ -12,6 +14,7 @@ export default function Post({ post }) {
     fetched: false,
   });
   const [isLiked, setIsLiked] = useState(false);
+  const [commentClicked, setCommentClicked] = useState(false);
   const likeHandler = () => {
     // setLikes(isLiked ? likes - 1 : likes + 1);
     // setIsLiked(!isLiked);
@@ -44,7 +47,11 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src="https://res.cloudinary.com/k190173/image/upload/sample"
+              src={
+                state.fetched
+                  ? state.user.profilePicURL
+                  : "assets/no-profile-pic.png"
+              }
               alt=""
             />
             <span className="postUsername">
@@ -64,11 +71,9 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.text}</span>
-          <img
-            className="postImg"
-            src="https://res.cloudinary.com/k190173/image/upload/sample"
-            alt=""
-          />
+          {post.imageURL && (
+            <img className="postImg" src={post.imageURL} alt="" />
+          )}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -96,7 +101,13 @@ export default function Post({ post }) {
             </button>
           </div>
           <div className="postBottomRight">
-            <button className="btn btn-link" type="button">
+            <button
+              className="btn btn-link"
+              type="button"
+              onClick={() => {
+                setCommentClicked(!commentClicked);
+              }}
+            >
               <img className="likeIcon" src="assets/comment.jpeg" alt="" />
               {state.fetched ? (
                 state.comments.length + " Comments"
@@ -107,46 +118,7 @@ export default function Post({ post }) {
           </div>
         </div>
       </div>
+      {commentClicked && <CommentBlock comments={state.comments} />}
     </div>
   );
-}
-
-function timeSince(date) {
-  var seconds = Math.floor((new Date() - new Date(date)) / 1000);
-
-  var interval = seconds / 31536000;
-  var s;
-  var num;
-  if (interval > 1) {
-    num = Math.floor(interval);
-    s = num === 1 ? "" : "s";
-    return num + " year" + s + " ago";
-  }
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    num = Math.floor(interval);
-    s = num === 1 ? "" : "s";
-    return num + " month" + s + " ago";
-  }
-  interval = seconds / 86400;
-  if (interval > 1) {
-    num = Math.floor(interval);
-    s = num === 1 ? "" : "s";
-    return num + " day" + s + " ago";
-  }
-  interval = seconds / 3600;
-  if (interval > 1) {
-    num = Math.floor(interval);
-    s = num === 1 ? "" : "s";
-    return num + " hour" + s + " ago";
-  }
-  interval = seconds / 60;
-  if (interval > 1) {
-    num = Math.floor(interval);
-    s = num === 1 ? "" : "s";
-    return num + " minute" + s + " ago";
-  }
-  num = Math.floor(seconds);
-  s = num === 1 ? "" : "s";
-  return num + " second" + s + " ago";
 }

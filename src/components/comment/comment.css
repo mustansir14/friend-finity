@@ -1,0 +1,27 @@
+.commentName {
+  font-size: 15px;
+}
+
+.commentDate {
+  font-size: 13px;
+  margin-left: 32px;
+}
+
+.commentText {
+  font-size: 15px;
+}
+
+.comment {
+  background-color: #faf9f6;
+  margin-left: 10px;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+.commentUserImg {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
