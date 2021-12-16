@@ -12,7 +12,7 @@ router.route("/").get((req, res) => {
 
 // get user based on id
 router.route("/:id").get((req, res) => {
-  User.find({ _id: req.params.id }, { password: 0 })
+  User.findOne({ _id: req.params.id }, { password: 0 })
     .then((user) => res.json(user))
     .catch((err) => res.status(400).json({ Error: err }));
 });
