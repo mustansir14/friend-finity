@@ -79,10 +79,10 @@ export default function Post({ post }) {
           <div className="postBottomLeft">
             <button
               type="button"
-              class="btn btn-outline-primary btn-sm likeBtn"
+              className="btn btn-outline-primary btn-sm likeBtn"
             >
               <img
-                className="icon"
+                className="likeIcon"
                 src="assets/like.png"
                 onClick={likeHandler}
                 alt=""
@@ -98,8 +98,8 @@ export default function Post({ post }) {
             </button>
           </div>
           <div className="postBottomMiddle">
-            <button type="button" class="btn btn-primary btn-sm">
-              <img className="icon" src="assets/share.svg" alt="" />
+            <button type="button" className="btn btn-primary btn-sm">
+              <img className="likeIcon" src="assets/share.svg" alt="" />
               Share
             </button>
           </div>
@@ -111,7 +111,7 @@ export default function Post({ post }) {
                 setCommentClicked(!commentClicked);
               }}
             >
-              <img className="icon" src="assets/comment.jpeg" alt="" />
+              <img className="likeIcon" src="assets/comment.jpeg" alt="" />
               {state.fetched ? (
                 state.comments.length + " Comments"
               ) : (

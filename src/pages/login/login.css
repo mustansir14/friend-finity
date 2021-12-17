@@ -77,3 +77,10 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+.incorrect-msg {
+  text-align: center;
+  color: red;
+  vertical-align: center;
+  margin-bottom: 10px;
+}

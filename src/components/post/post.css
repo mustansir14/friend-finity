@@ -64,11 +64,12 @@
   margin-left: 20px;
 }
 
-.icon {
+.likeIcon {
   width: 24px;
   height: 24px;
   margin-right: 5px;
   cursor: pointer;
+  color: #ffffff;
 }
 .heartIcon {
   width: 24px;
@@ -92,10 +93,5 @@
 }
 
 .likeBtn {
-  border-color: #320949;
-}
-
-.likeBtn:hover {
-  background-color: #320949;
-  border-color: #320949;
+  color: #ffffff;
 }

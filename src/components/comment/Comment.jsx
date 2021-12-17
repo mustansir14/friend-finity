@@ -28,9 +28,9 @@ export default function Comment({ comment }) {
     fetchData();
   }, [comment]);
   return (
-    <div class="card comment">
-      <div class="card-body commentBody">
-        <h5 class="card-title commentName">
+    <div className="card comment">
+      <div className="card-body commentBody">
+        <h5 className="card-title commentName">
           <img
             className="commentUserImg"
             src={
@@ -48,11 +48,11 @@ export default function Comment({ comment }) {
             )}
           </span>
         </h5>
-        <h6 class="card-subtitle mb-2 text-muted commentDate">
+        <h6 className="card-subtitle mb-2 text-muted commentDate">
           {timeSince(comment.dateTimeCommented)}
         </h6>
-        <p class="card-text commentText">{comment.text}</p>
-        {/* <a href="#" class="btn btn-primary">
+        <p className="card-text commentText">{comment.text}</p>
+        {/* <a href="#" className="btn btn-primary">
           Go somewhere
         </a> */}
       </div>

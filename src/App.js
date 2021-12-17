@@ -4,7 +4,13 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import Topbar from "./components/topbar/Topbar";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -12,14 +18,42 @@ function App() {
       <Router>
         <Topbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>
   );
 }
+
+const ProtectedRoute = ({ children }) => {
+  const user = localStorage.getItem("user");
+  if (!user) return <Navigate to="/login" />;
+  return children;
+};
 export default App;
