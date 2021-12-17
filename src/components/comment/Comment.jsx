@@ -28,7 +28,7 @@ export default function Comment({ comment }) {
     fetchData();
   }, [comment]);
   return (
-    <div class="card comment" style={{ width: "18rem" }}>
+    <div class="card comment">
       <div class="card-body commentBody">
         <h5 class="card-title commentName">
           <img

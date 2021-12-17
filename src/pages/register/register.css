@@ -1,23 +1,21 @@
 .register {
-    width: 100vw;
-    height: 100vh;
-    background-color: #320949;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}  
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .registerWrapper {
-    width: 70%;
-    height: 70%;
-    display: flex;
+  width: 70%;
+  height: 70%;
+  display: flex;
 }
 .registerLeft,
 .registerRight {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .registerLogo {
   font-size: 50px;
@@ -29,48 +27,46 @@
   font-size: 24px;
   color: #ffffff;
 }
-.registerBox{
-    height: 700px;
-    padding: 20px;
-    background-color: #320949;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.registerBox {
+  height: 700px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.registerInput{
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid gray;
-    font-size: 18px;
-    padding-left: 20px;
-    margin-bottom: 15px;
+.registerInput {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 15px;
 }
 
-.registerInput:focus{
-    outline: none;
+.registerInput:focus {
+  outline: none;
 }
-.registerButton{
-    height: 50px;
-    border-radius: 10px;
-    border: none;
-    background-color: #0a3975;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-bottom: 15px;
-    
+.registerButton {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0a3975;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 15px;
 }
-.registerRegisterButton{
-    width: 50%;
-    align-self: center;
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    background-color: #35a01f;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
+.registerRegisterButton {
+  width: 50%;
+  align-self: center;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  background-color: #35a01f;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
 }

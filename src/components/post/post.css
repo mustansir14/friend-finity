@@ -64,7 +64,7 @@
   margin-left: 20px;
 }
 
-.likeIcon {
+.icon {
   width: 24px;
   height: 24px;
   margin-right: 5px;
@@ -89,4 +89,13 @@
 .postText {
   align-items: center;
   font-size: 17px;
+}
+
+.likeBtn {
+  border-color: #320949;
+}
+
+.likeBtn:hover {
+  background-color: #320949;
+  border-color: #320949;
 }
