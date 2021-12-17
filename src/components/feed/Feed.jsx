@@ -4,13 +4,20 @@ import Post from "../post/Post";
 import { Posts } from "../../dummyData";
 import axios from "axios";
 import { useState, useEffect } from "react";
-export default function Feed() {
+export default function Feed({ profile = false }) {
   const [Posts, setPosts] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    axios.get("http://localhost:8000/posts").then((res) => {
-      console.log(res.data);
-      setPosts(res.data);
-    });
+    axios
+      .get(
+        profile
+          ? "http://localhost:8000/posts/user/" + user._id
+          : "http://localhost:8000/posts/"
+      )
+      .then((res) => {
+        console.log(res.data);
+        setPosts(res.data);
+      });
   }, []);
 
   return (
