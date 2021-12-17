@@ -17,21 +17,23 @@ export default function Profile() {
                 src="assets/post/1.jpeg"
                 alt=""
               />
-              <img
-                className="profileUserImg"
-                src={
-                  user.profilePicURL
-                    ? user.profilePicURL
-                    : "/assets/no-profile-pic.png"
-                }
-                alt=""
-              />
-            </div>
-            <div className="profileInfo">
-              <h4 className="profileInfoName">
-                {user.firstName + " " + user.lastName}
-              </h4>
-              <span className="profileInfoDesc">Wassup Bois</span>
+              <div className="profileInfoContainer">
+                <img
+                  className="profileUserImg"
+                  src={
+                    user.profilePicURL
+                      ? user.profilePicURL
+                      : "/assets/no-profile-pic.png"
+                  }
+                  alt=""
+                />
+                <div className="profileInfo">
+                  <h4 className="profileInfoName">
+                    {user.firstName + " " + user.lastName}
+                  </h4>
+                  <span className="profileInfoDesc">Wassup Bois</span>
+                </div>
+              </div>
             </div>
           </div>
           <div className="profileRightBottom">
