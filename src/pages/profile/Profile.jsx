@@ -1,10 +1,10 @@
 import "./profile.css";
-import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
 
 export default function Profile() {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <div className="profile">
@@ -19,12 +19,18 @@ export default function Profile() {
               />
               <img
                 className="profileUserImg"
-                src="assets/person/1.jpeg"
+                src={
+                  user.profilePicURL
+                    ? user.profilePicURL
+                    : "/assets/no-profile-pic.png"
+                }
                 alt=""
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">Faaiz Asif</h4>
+              <h4 className="profileInfoName">
+                {user.firstName + " " + user.lastName}
+              </h4>
               <span className="profileInfoDesc">Wassup Bois</span>
             </div>
           </div>

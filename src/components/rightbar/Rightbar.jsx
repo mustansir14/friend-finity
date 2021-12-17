@@ -21,17 +21,18 @@ export default function rightbar({ profile }) {
     );
   };
   const ProfileRightbar = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
     return (
       <>
         <h4 className="rightbarTitle">User Information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoKey">Karachi</span>
+            <span className="rightbarInfoKey">{user.city}</span>
           </div>
           <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoKey">Lahore</span>
+            <span className="rightbarInfoKey">Country:</span>
+            <span className="rightbarInfoKey">{user.country}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>

@@ -1,18 +1,17 @@
 import "./Topbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Topbar() {
   let navigate = useNavigate();
   const [user, setUser] = useState(null);
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setUser(user);
     }
-  });
+  }, []);
 
   const handleLogOut = () => {
     localStorage.setItem("user", "");
@@ -34,8 +33,12 @@ export default function Topbar() {
 
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">Home</span>
-          <span className="topbarLink">Profile</span>
+          <Link to="/home" className="topbarLink">
+            Home
+          </Link>
+          <Link to="/profile" className="topbarLink">
+            Profile
+          </Link>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
@@ -62,11 +65,7 @@ export default function Topbar() {
               aria-expanded="false"
             >
               <img
-                src={
-                  user.profilePicURL
-                    ? user.profilePicURL
-                    : "/assets/no-profile-pic.png"
-                }
+                src={user ? user.profilePicURL : "/assets/no-profile-pic.png"}
                 alt=""
                 className="topbarImg"
               />
