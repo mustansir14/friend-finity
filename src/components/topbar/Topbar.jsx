@@ -7,9 +7,13 @@ export default function Topbar() {
   let navigate = useNavigate();
   const [user, setUser] = useState(null);
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setUser(user);
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        setUser(user);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
@@ -26,7 +30,7 @@ export default function Topbar() {
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          <Search classname="searchIcon" />
+          <Search className="searchIcon" />
           <input placeholder="Search for Friend" className="searchInput" />
         </div>
       </div>

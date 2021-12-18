@@ -1,7 +1,6 @@
 import "./feed.css";
 import Share from "../share/Share";
 import Post from "../post/Post";
-import { Posts } from "../../dummyData";
 import axios from "axios";
 import { useState, useEffect } from "react";
 export default function Feed({ profile = false }) {
@@ -18,7 +17,7 @@ export default function Feed({ profile = false }) {
         console.log(res.data);
         setPosts(res.data);
       });
-  }, []);
+  }, [profile, user]);
 
   return (
     <div className="feed">

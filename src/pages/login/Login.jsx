@@ -43,14 +43,14 @@ export default function Login() {
               placeholder="Email"
               className="loginInput"
               type="text"
-              required="true"
+              required={true}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder="Password"
               className="loginInput"
               type="password"
-              required="true"
+              required={true}
               onChange={(e) => setPassword(e.target.value)}
             />
             {invalidEmail && (
