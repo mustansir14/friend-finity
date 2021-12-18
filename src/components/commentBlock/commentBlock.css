@@ -2,3 +2,41 @@
   background-color: #201e1e;
   padding: 10px 0px;
 }
+
+.commentInput {
+  border: none;
+  width: 80%;
+  background-color: #2c2c2c;
+  color: #ffffff;
+}
+.commentInput:focus {
+  outline: none;
+}
+
+.commentSubmit {
+  border-color: #320949;
+  color: #ffffff;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: white;
+  width: 120px;
+  background: transparent;
+  margin-left: 80%;
+}
+
+.commentSubmit:hover {
+  background-color: #320949;
+}
+
+.submitBtnText {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.commentHr {
+  margin-left: 5%;
+}

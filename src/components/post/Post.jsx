@@ -1,5 +1,4 @@
 import "./post.css";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ShareIcon from "@mui/icons-material/Share";
 import CommentIcon from "@mui/icons-material/Comment";
@@ -9,17 +8,22 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CommentBlock from "../commentBlock/CommentBlock";
 import timeSince from "../../utils/timeSince";
 import containsUser from "../../utils/containsUser";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function Post({ post }) {
+export default function Post({ post, deleteHandler }) {
   const [fetched, setFetched] = useState(false);
   const [user, setUser] = useState();
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [commentClicked, setCommentClicked] = useState(false);
+  const [commentsLength, setCommentsLength] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
   const likeHandler = () => {
     if (!isLiked) {
-      likes.push(user);
+      likes.push(loggedInUser);
       setLikes([...likes]);
       setIsLiked(true);
       axios
@@ -37,6 +41,22 @@ export default function Post({ post }) {
         .catch((error) => console.log(error));
     }
   };
+
+  const updateComments = (comments) => {
+    setCommentsLength(comments.length);
+    setComments([...comments]);
+  };
+
+  const deletePost = async () => {
+    setDeleting(true);
+    try {
+      await axios.delete("http://localhost:8000/posts/" + post._id);
+      deleteHandler(post._id);
+    } catch (error) {
+      console.log(error);
+      setDeleting(false);
+    }
+  };
   useEffect(() => {
     async function fetchData() {
       const userRes = await axios.get(
@@ -51,8 +71,9 @@ export default function Post({ post }) {
       setUser(userRes.data);
       setLikes(likesRes.data);
       setComments(commentsRes.data);
+      setCommentsLength(commentsRes.data.length);
       setFetched(true);
-      if (containsUser(userRes.data._id, likesRes.data)) setIsLiked(true);
+      if (containsUser(loggedInUser._id, likesRes.data)) setIsLiked(true);
     }
     fetchData();
   }, [post]);
@@ -78,9 +99,15 @@ export default function Post({ post }) {
             </span>
             <span className="postDate">{timeSince(post.dateTimePosted)}</span>
           </div>
-          <div className="postTopRight">
-            <MoreVertIcon />
-          </div>
+          {loggedInUser._id === post.userID && (
+            <button className="postDeleteBtn" onClick={deletePost}>
+              {deleting ? (
+                <ClipLoader color="#ffffff" loading={true} size={16} />
+              ) : (
+                <DeleteIcon />
+              )}
+            </button>
+          )}
         </div>
         <div className="postCenter">
           <span className="postText">{post.text}</span>
@@ -125,7 +152,7 @@ export default function Post({ post }) {
               <CommentIcon />
               <span className="btnText">
                 {fetched ? (
-                  comments.length + " Comments"
+                  commentsLength + " Comments"
                 ) : (
                   <ClipLoader color="#6699CC" loading={true} size={15} />
                 )}
@@ -134,8 +161,12 @@ export default function Post({ post }) {
           </div>
         </div>
       </div>
-      {commentClicked && comments.length > 0 && (
-        <CommentBlock comments={comments} />
+      {commentClicked && (
+        <CommentBlock
+          comments={comments}
+          updateComments={updateComments}
+          postID={post._id}
+        />
       )}
     </div>
   );

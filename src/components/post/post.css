@@ -113,3 +113,15 @@
 .likeBtn:hover {
   background-color: #320949;
 }
+
+.postDeleteBtn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.postDeleteBtn:hover {
+  background-color: #320949;
+  border-radius: 20%;
+}

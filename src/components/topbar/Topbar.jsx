@@ -5,20 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 
 export default function Topbar() {
   let navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      if (user) {
-        setUser(user);
-      }
-    } catch (error) {}
-  }, []);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogOut = () => {
-    localStorage.setItem("user", "");
+    localStorage.removeItem("user");
     navigate("/login");
-    setUser(null);
   };
 
   return (

@@ -27,3 +27,20 @@
   object-fit: cover;
   margin-right: 10px;
 }
+
+.deleteIcon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 5%;
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.deleteIcon:hover {
+  background-color: #320949;
+  border-radius: 20%;
+}

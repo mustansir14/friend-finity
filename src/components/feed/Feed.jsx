@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 export default function Feed({ profile = false }) {
   const [Posts, setPosts] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     axios
       .get(
@@ -14,14 +15,20 @@ export default function Feed({ profile = false }) {
           : "http://localhost:8000/posts/"
       )
       .then((res) => {
-        console.log(res.data);
         setPosts(res.data);
       });
   }, []);
 
   const onChange = (posts) => {
-    console.log(posts);
     setPosts([...posts]);
+  };
+
+  const deleteHandler = (id) => {
+    const newPosts = [];
+    for (let i in Posts) {
+      if (Posts[i]._id !== id) newPosts.push(Posts[i]);
+    }
+    setPosts(newPosts);
   };
 
   return (
@@ -29,7 +36,7 @@ export default function Feed({ profile = false }) {
       <div className="feedWrapper">
         <Share posts={Posts} onChange={onChange} />
         {Posts.map((p) => (
-          <Post key={p._id} post={p} />
+          <Post key={p._id} post={p} deleteHandler={deleteHandler} />
         ))}
       </div>
     </div>
