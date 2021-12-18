@@ -1,5 +1,6 @@
 import "./rightbar.css";
 import Online from "../online/Online";
+import Messenger from "../messenger/Messenger";
 import { Users } from "../../dummyData";
 export default function rightbar({ profile }) {
   const HomeRightbar = () => {
@@ -17,6 +18,7 @@ export default function rightbar({ profile }) {
             <Online key={u.id} user={u} />
           ))}
         </ul>
+        <Messenger/>
       </>
     );
   };
