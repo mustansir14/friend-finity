@@ -61,7 +61,9 @@ router.route("/").post(async (req, res) => {
       const uploadedResponse = await cloudinary.uploader.upload(
         body.profilePicURL
       );
-      body.profilePicURL = uploadedResponse.public_id;
+      body.profilePicURL =
+        "https://res.cloudinary.com/k190173/image/upload/" +
+        uploadedResponse.public_id;
     } catch (error) {
       res.status(500).json({ Error: "Error in uploading to cloudinary" });
     }

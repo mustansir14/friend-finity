@@ -58,7 +58,11 @@ export default function Topbar() {
               aria-expanded="false"
             >
               <img
-                src={user ? user.profilePicURL : "/assets/no-profile-pic.png"}
+                src={
+                  user.profilePicURL
+                    ? user.profilePicURL
+                    : "/assets/no-profile-pic.png"
+                }
                 alt=""
                 className="topbarImg"
               />

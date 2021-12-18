@@ -28,12 +28,12 @@
   color: #ffffff;
 }
 .registerBox {
-  height: 700px;
+  height: 800px;
   padding: 20px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .registerInput {
   height: 50px;
@@ -94,4 +94,12 @@
   border: 3px solid white;
   align-items: center;
   margin: 0 auto;
+}
+
+.errorMsg {
+  text-align: center;
+  color: red;
+  vertical-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
 }

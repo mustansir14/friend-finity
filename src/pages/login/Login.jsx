@@ -35,14 +35,14 @@ export default function Login() {
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">FriendFinity</h3>
-          <span className="loginDesc">Doorway To Infinite Friends</span>
+          <span className="loginDesc">A Doorway To Infinite Friends</span>
         </div>
         <div className="loginRight">
           <form onSubmit={handleSubmit} className="loginBox">
             <input
               placeholder="Email"
               className="loginInput"
-              type="text"
+              type="email"
               required={true}
               onChange={(e) => setEmail(e.target.value)}
             />
