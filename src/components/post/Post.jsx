@@ -8,19 +8,34 @@ import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
 import CommentBlock from "../commentBlock/CommentBlock";
 import timeSince from "../../utils/timeSince";
+import containsUser from "../../utils/containsUser";
 
 export default function Post({ post }) {
-  const [state, setState] = useState({
-    user: {},
-    likes: [],
-    comments: [],
-    fetched: false,
-  });
+  const [fetched, setFetched] = useState(false);
+  const [user, setUser] = useState();
+  const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [commentClicked, setCommentClicked] = useState(false);
   const likeHandler = () => {
-    // setLikes(isLiked ? likes - 1 : likes + 1);
-    // setIsLiked(!isLiked);
+    if (!isLiked) {
+      likes.push(user);
+      setLikes([...likes]);
+      setIsLiked(true);
+      axios
+        .post("http://localhost:8000/postlikes", {
+          userID: user._id,
+          postID: post._id,
+        })
+        .catch((error) => console.log(error));
+    } else {
+      const like = likes.pop();
+      setLikes([...likes]);
+      setIsLiked(false);
+      axios
+        .delete("http://localhost:8000/postlikes/" + like._id)
+        .catch((error) => console.log(error));
+    }
   };
   useEffect(() => {
     async function fetchData() {
@@ -33,12 +48,11 @@ export default function Post({ post }) {
       const commentsRes = await axios.get(
         "http://localhost:8000/comments/post/" + post._id
       );
-      setState({
-        user: userRes.data,
-        likes: likesRes.data,
-        comments: commentsRes.data,
-        fetched: true,
-      });
+      setUser(userRes.data);
+      setLikes(likesRes.data);
+      setComments(commentsRes.data);
+      setFetched(true);
+      if (containsUser(userRes.data._id, likesRes.data)) setIsLiked(true);
     }
     fetchData();
   }, [post]);
@@ -50,17 +64,13 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={
-                state.fetched
-                  ? state.user.profilePicURL
-                  : "assets/no-profile-pic.png"
-              }
+              src={fetched ? user.profilePicURL : "assets/no-profile-pic.png"}
               alt=""
             />
             <span className="postUsername">
               <span className="postUsername">
-                {state.fetched ? (
-                  state.user.firstName + " " + state.user.lastName
+                {fetched ? (
+                  user.firstName + " " + user.lastName
                 ) : (
                   <ClipLoader color="#6699CC" loading={true} size={25} />
                 )}
@@ -82,44 +92,51 @@ export default function Post({ post }) {
           <div className="postBottomLeft">
             <button
               type="button"
-              className="btn btn-outline-primary btn-sm likeBtn"
+              className={
+                "likeBtn " + (isLiked ? "likeBtnClicked" : "likeBtnNotClicked")
+              }
+              onClick={likeHandler}
             >
               <ThumbUpOffAltIcon />
-              <span className="postLikeCounter">
-                Like
-                {state.fetched ? (
-                  " (" + state.likes.length + ")"
+              <span className="btnText">
+                {fetched ? (
+                  likes.length + " "
                 ) : (
                   <ClipLoader color="#6699CC" loading={true} size={15} />
                 )}
+                Likes
               </span>
             </button>
           </div>
           <div className="postBottomMiddle">
-            <button type="button" className="btn btn-primary btn-sm shareBtn">
+            <button type="button" className="likeBtn">
               <ShareIcon />
-              Share
+              <span className="btnText">Share</span>
             </button>
           </div>
           <div className="postBottomRight">
             <button
-              className="btn btn-link"
+              className="likeBtn"
               type="button"
               onClick={() => {
                 setCommentClicked(!commentClicked);
               }}
             >
               <CommentIcon />
-              {state.fetched ? (
-                state.comments.length + " Comments"
-              ) : (
-                <ClipLoader color="#6699CC" loading={true} size={15} />
-              )}
+              <span className="btnText">
+                {fetched ? (
+                  comments.length + " Comments"
+                ) : (
+                  <ClipLoader color="#6699CC" loading={true} size={15} />
+                )}
+              </span>
             </button>
           </div>
         </div>
       </div>
-      {commentClicked && <CommentBlock comments={state.comments} />}
+      {commentClicked && comments.length > 0 && (
+        <CommentBlock comments={comments} />
+      )}
     </div>
   );
 }
