@@ -63,7 +63,10 @@ export default function Login() {
               Log In
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
+            <button
+              className="loginRegisterButton"
+              onClick={() => navigate("/register")}
+            >
               Create a New Account
             </button>
           </form>

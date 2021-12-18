@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .loginWrapper {
-  width: 70%;
+  width: 50%;
   height: 70%;
   display: flex;
 }
@@ -51,7 +51,7 @@
   height: 60px;
   border-radius: 10px;
   border: none;
-  background-color: #0a3975;
+  background-color: #320949;
   color: white;
   font-size: 20px;
   font-weight: 500;
