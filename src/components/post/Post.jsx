@@ -1,5 +1,8 @@
 import "./post.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ShareIcon from "@mui/icons-material/Share";
+import CommentIcon from "@mui/icons-material/Comment";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -81,16 +84,11 @@ export default function Post({ post }) {
               type="button"
               className="btn btn-outline-primary btn-sm likeBtn"
             >
-              <img
-                className="likeIcon"
-                src="assets/like.png"
-                onClick={likeHandler}
-                alt=""
-              />
-              Like
+              <ThumbUpOffAltIcon />
               <span className="postLikeCounter">
+                Like
                 {state.fetched ? (
-                  "(" + state.likes.length + ")"
+                  " (" + state.likes.length + ")"
                 ) : (
                   <ClipLoader color="#6699CC" loading={true} size={15} />
                 )}
@@ -98,8 +96,8 @@ export default function Post({ post }) {
             </button>
           </div>
           <div className="postBottomMiddle">
-            <button type="button" className="btn btn-primary btn-sm">
-              <img className="likeIcon" src="assets/share.svg" alt="" />
+            <button type="button" className="btn btn-primary btn-sm shareBtn">
+              <ShareIcon />
               Share
             </button>
           </div>
@@ -111,7 +109,7 @@ export default function Post({ post }) {
                 setCommentClicked(!commentClicked);
               }}
             >
-              <img className="likeIcon" src="assets/comment.jpeg" alt="" />
+              <CommentIcon />
               {state.fetched ? (
                 state.comments.length + " Comments"
               ) : (

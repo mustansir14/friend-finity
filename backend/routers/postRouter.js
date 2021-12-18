@@ -26,13 +26,15 @@ router.route("/user/:id").get((req, res) => {
 // add post
 router.route("/").post(async (req, res) => {
   const body = req.body;
-  if (!(body.userID && body.text)) {
+  if (!(body.userID && (body.text || body.imageURL))) {
     return res.status(400).send({ error: "required field(s) missing" });
   }
   if (body.imageURL) {
     try {
       const uploadedResponse = await cloudinary.uploader.upload(body.imageURL);
-      body.imageURL = uploadedResponse.public_id;
+      body.imageURL =
+        "https://res.cloudinary.com/k190173/image/upload/" +
+        uploadedResponse.public_id;
     } catch (error) {
       res.status(500).json({ Error: "Error in uploading to cloudinary" });
     }

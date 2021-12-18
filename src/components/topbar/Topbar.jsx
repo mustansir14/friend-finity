@@ -12,9 +12,7 @@ export default function Topbar() {
       if (user) {
         setUser(user);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, []);
 
   const handleLogOut = () => {

@@ -37,3 +37,11 @@
     transform: rotate(360deg);
   }
 }
+
+.btn btn-primary:hover,
+.btn btn-primary:focus,
+.btn btn-primary:active,
+.btn btn-primary.active {
+  border-color: #320949;
+  background-color: #320949;
+}

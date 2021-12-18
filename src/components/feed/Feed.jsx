@@ -17,12 +17,17 @@ export default function Feed({ profile = false }) {
         console.log(res.data);
         setPosts(res.data);
       });
-  }, [profile, user]);
+  }, []);
+
+  const onChange = (posts) => {
+    console.log(posts);
+    setPosts([...posts]);
+  };
 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+        <Share posts={Posts} onChange={onChange} />
         {Posts.map((p) => (
           <Post key={p._id} post={p} />
         ))}

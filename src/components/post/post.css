@@ -93,5 +93,22 @@
 }
 
 .likeBtn {
+  border-color: #320949;
+  background: transparent;
   color: #ffffff;
+}
+
+.likeBtn:hover {
+  background-color: #320949;
+  border-color: #320949;
+}
+
+.shareBtn {
+  background-color: #320949;
+  border-color: #320949;
+}
+
+.shareBtn:hover {
+  background-color: #1b0625;
+  border-color: #1b0625;
 }
