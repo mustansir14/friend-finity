@@ -81,6 +81,7 @@ export default function Register() {
             <img
               src={previewSource ? previewSource : "/assets/no-profile-pic.png"}
               className="userImg"
+              alt="userImg"
             />
             <label htmlFor="files" className="selectDisplayBtn">
               Browse Picture

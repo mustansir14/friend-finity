@@ -10,6 +10,17 @@
 .commentText {
   font-size: 15px;
   margin-left: 32px;
+  background-color: #2c2c2c;
+  border: none;
+  color: #ffffff;
+  width: 90%;
+  word-wrap: break-word;
+  resize: none;
+  height: 30px;
+}
+
+.commentText:focus {
+  outline: none;
 }
 
 .comment {
@@ -28,19 +39,22 @@
   margin-right: 10px;
 }
 
-.deleteIcon {
+.editIcons {
   position: absolute;
   right: 0;
   top: 0;
   margin-right: 5%;
   margin-top: 10px;
+}
+
+.editIcon {
   background: transparent;
   border: none;
   color: #ffffff;
   padding: 5px;
 }
 
-.deleteIcon:hover {
+.editIcon:hover {
   background-color: #320949;
   border-radius: 20%;
 }

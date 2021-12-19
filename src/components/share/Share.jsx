@@ -1,6 +1,6 @@
 import "./share.css";
 import "../post/post.css";
-import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material";
+import { PermMedia } from "@mui/icons-material";
 import { useState } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";

@@ -1,5 +1,5 @@
 import "./comment.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import timeSince from "../../utils/timeSince";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -17,6 +17,8 @@ export default function Comment({ comment, deleteHandler }) {
   const [deleting, setDeleting] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [updating, setUpdating] = useState(false);
+  const [commentText, setCommentText] = useState(comment.text);
+  const inputRef = useRef(null);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -29,7 +31,26 @@ export default function Comment({ comment, deleteHandler }) {
     }
   };
 
-  const editComment = () => {};
+  const editComment = async () => {
+    setUpdating(!updating);
+    if (updating) {
+      if (!commentText) {
+        setUpdating(false);
+        setCommentText(comment.text);
+        inputRef.current.value = comment.text;
+        return;
+      }
+      setUpdateLoading(true);
+      try {
+        await axios.put("http://localhost:8000/comments/" + comment._id, {
+          text: commentText,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      setUpdateLoading(false);
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -71,9 +92,9 @@ export default function Comment({ comment, deleteHandler }) {
             )}
           </span>
           {user._id === comment.userID && (
-            <>
+            <div className="editIcons">
               <button
-                className="postEditBtn"
+                className="editIcon"
                 onClick={editComment}
                 type={"button"}
               >
@@ -85,7 +106,7 @@ export default function Comment({ comment, deleteHandler }) {
                   <EditIcon />
                 )}
               </button>
-              <button className="deleteIcon" onClick={handleDelete}>
+              <button className="editIcon" onClick={handleDelete}>
                 <span>
                   {deleting ? (
                     <ClipLoader color="#ffffff" loading={true} size={16} />
@@ -94,13 +115,19 @@ export default function Comment({ comment, deleteHandler }) {
                   )}
                 </span>
               </button>
-            </>
+            </div>
           )}
         </h5>
         <h6 className="card-subtitle mb-2 text-muted commentDate">
           {timeSince(comment.dateTimeCommented)}
         </h6>
-        <p className="card-text commentText">{comment.text}</p>
+        <input
+          className="card-text commentText"
+          ref={inputRef}
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+          readOnly={!updating}
+        />
       </div>
     </div>
   );
