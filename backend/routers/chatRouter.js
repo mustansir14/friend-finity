@@ -28,7 +28,6 @@ router.route("/").post((req, res) => {
     return res.status(400).send({ error: "required field(s) missing" });
   }
   let chat = new Chat(body);
-  chat.recieveDateTime = new Date();
   chat.save().then((doc) => res.status(201).send(doc));
 });
 

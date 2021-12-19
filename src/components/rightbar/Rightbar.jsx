@@ -1,22 +1,46 @@
 import "./rightbar.css";
 import Online from "../online/Online";
 import Messenger from "../messenger/Messenger";
-import { Users } from "../../dummyData";
-export default function rightbar({ profile }) {
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+export default function Rightbar({ profile }) {
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
+  const [friends, setFriends] = useState([]);
+  const [toFriend, setToFriend] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/friends/user/" + loggedInUser._id)
+      .then((res) => {
+        setFriends(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const friendClickHandler = (friend) => {
+    setToFriend(friend);
+  };
+
   const HomeRightbar = () => {
     return (
       <>
         <h4 className="rightbarTitle">Chat with your Friends</h4>
         <div className="rightbarSelectFriend">
           <ul className="rightbarFriendList">
-            {Users.map((u) => (
-              <Online key={u.id} user={u} />
+            {friends.map((u) => (
+              <Online
+                key={u._id}
+                user={u}
+                friendClickHandler={friendClickHandler}
+              />
             ))}
           </ul>
         </div>
         <hr />
-        <Messenger />
+        {toFriend && <Messenger toUser={toFriend} />}
       </>
     );
   };

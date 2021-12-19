@@ -16,23 +16,20 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
-// Find friends of a particular user
+// Find users which are friends of a particular user
 router.route("/user/:id").get((req, res) => {
-  Friend.find({ $or: [{ user1ID: req.params.id }, { user2ID: req.params.id }] })
-    .then((friends) =>
-      res.json(
-        friends.map((friend) => {
-          return {
-            _id: friend._id,
-            userID:
-              friend.user1ID.toString() === req.params.id
-                ? friend.user2ID
-                : friend.user1ID,
-          };
-        })
-      )
-    )
-    .catch((err) => res.status(400).json({ Error: err }));
+  const userID = req.params.id;
+  Friend.find({
+    $or: [{ user1ID: userID }, { user2ID: userID }],
+  }).then((friends) => {
+    const userIDs = friends.map((friend) => {
+      if (friend.user1ID.toString() !== userID) return friend.user1ID;
+      else return friend.user2ID;
+    });
+    return User.find({ _id: { $in: userIDs } }).then((friends) => {
+      return res.json(friends);
+    });
+  });
 });
 
 // Fimd users which are not friend of a particular user

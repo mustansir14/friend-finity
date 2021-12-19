@@ -11,14 +11,23 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.messageImgRight {
+  margin-left: 10px;
+}
+
+.messageImgLeft {
   margin-right: 10px;
 }
+
 .messageText {
   padding: 10px;
   border-radius: 20px;
   background-color: #320949;
   max-width: 300px;
   word-wrap: break-word;
+  font-size: 15px;
 }
 .messageBottom {
   font-size: 12px;

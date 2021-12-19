@@ -90,6 +90,17 @@
 .postText {
   align-items: center;
   font-size: 17px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  width: 100%;
+  word-wrap: break-word;
+  resize: none;
+  height: 30px;
+}
+
+.postText:focus {
+  outline: none;
 }
 
 .likeBtn {
@@ -114,14 +125,14 @@
   background-color: #320949;
 }
 
-.postDeleteBtn {
+.postEditBtn {
   background: transparent;
   border: none;
   color: #ffffff;
   padding: 5px;
 }
 
-.postDeleteBtn:hover {
+.postEditBtn:hover {
   background-color: #320949;
   border-radius: 20%;
 }

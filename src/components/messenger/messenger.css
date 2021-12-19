@@ -17,6 +17,7 @@
   border-radius: 10px;
   border: none;
   background-color: #2c2c2c;
+  color: #ffffff;
 }
 
 .chatMessageInput:focus {
@@ -44,4 +45,6 @@
   height: calc(50vh - 80px);
   overflow-y: scroll;
   position: sticky;
+  display: flex;
+  flex-direction: column-reverse;
 }

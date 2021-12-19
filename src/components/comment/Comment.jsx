@@ -4,6 +4,8 @@ import axios from "axios";
 import timeSince from "../../utils/timeSince";
 import ClipLoader from "react-spinners/ClipLoader";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
 
 export default function Comment({ comment, deleteHandler }) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -13,6 +15,8 @@ export default function Comment({ comment, deleteHandler }) {
     fetched: false,
   });
   const [deleting, setDeleting] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const [updating, setUpdating] = useState(false);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -24,6 +28,8 @@ export default function Comment({ comment, deleteHandler }) {
       setDeleting(false);
     }
   };
+
+  const editComment = () => {};
 
   useEffect(() => {
     async function fetchData() {
@@ -65,15 +71,30 @@ export default function Comment({ comment, deleteHandler }) {
             )}
           </span>
           {user._id === comment.userID && (
-            <button className="deleteIcon" onClick={handleDelete}>
-              <span>
-                {deleting ? (
+            <>
+              <button
+                className="postEditBtn"
+                onClick={editComment}
+                type={"button"}
+              >
+                {updateLoading ? (
                   <ClipLoader color="#ffffff" loading={true} size={16} />
+                ) : updating ? (
+                  <SaveIcon></SaveIcon>
                 ) : (
-                  <DeleteIcon />
+                  <EditIcon />
                 )}
-              </span>
-            </button>
+              </button>
+              <button className="deleteIcon" onClick={handleDelete}>
+                <span>
+                  {deleting ? (
+                    <ClipLoader color="#ffffff" loading={true} size={16} />
+                  ) : (
+                    <DeleteIcon />
+                  )}
+                </span>
+              </button>
+            </>
           )}
         </h5>
         <h6 className="card-subtitle mb-2 text-muted commentDate">

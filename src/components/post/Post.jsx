@@ -2,13 +2,15 @@ import "./post.css";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ShareIcon from "@mui/icons-material/Share";
 import CommentIcon from "@mui/icons-material/Comment";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
 import CommentBlock from "../commentBlock/CommentBlock";
 import timeSince from "../../utils/timeSince";
 import containsUser from "../../utils/containsUser";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
 
 export default function Post({ post, deleteHandler }) {
   const [fetched, setFetched] = useState(false);
@@ -19,6 +21,10 @@ export default function Post({ post, deleteHandler }) {
   const [commentClicked, setCommentClicked] = useState(false);
   const [commentsLength, setCommentsLength] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  const [postText, setPostText] = useState(post.text);
+  const [updateLoading, setUpdateLoading] = useState(false);
+  const inputRef = useRef();
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
   const likeHandler = () => {
@@ -57,6 +63,28 @@ export default function Post({ post, deleteHandler }) {
       setDeleting(false);
     }
   };
+
+  const editPost = async () => {
+    setUpdating(!updating);
+    if (updating) {
+      if (!postText && !post.imageURL) {
+        setUpdating(false);
+        setPostText(post.text);
+        inputRef.current.value = post.text;
+        return;
+      }
+      setUpdateLoading(true);
+      try {
+        await axios.put("http://localhost:8000/posts/" + post._id, {
+          text: postText,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      setUpdateLoading(false);
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       const userRes = await axios.get(
@@ -100,17 +128,42 @@ export default function Post({ post, deleteHandler }) {
             <span className="postDate">{timeSince(post.dateTimePosted)}</span>
           </div>
           {loggedInUser._id === post.userID && (
-            <button className="postDeleteBtn" onClick={deletePost}>
-              {deleting ? (
-                <ClipLoader color="#ffffff" loading={true} size={16} />
-              ) : (
-                <DeleteIcon />
-              )}
-            </button>
+            <div className="postTopRight">
+              <button
+                className="postEditBtn"
+                onClick={editPost}
+                type={"button"}
+              >
+                {updateLoading ? (
+                  <ClipLoader color="#ffffff" loading={true} size={16} />
+                ) : updating ? (
+                  <SaveIcon></SaveIcon>
+                ) : (
+                  <EditIcon />
+                )}
+              </button>
+              <button className="postEditBtn" onClick={deletePost}>
+                {deleting ? (
+                  <ClipLoader color="#ffffff" loading={true} size={16} />
+                ) : (
+                  <DeleteIcon />
+                )}
+              </button>
+            </div>
           )}
         </div>
         <div className="postCenter">
-          <span className="postText">{post.text}</span>
+          <textarea
+            className="postText"
+            value={postText}
+            readOnly={!updating}
+            onChange={(e) => {
+              e.target.style.height = "30px";
+              e.target.style.height = e.target.scrollHeight + "px";
+              setPostText(e.target.value);
+            }}
+            ref={inputRef}
+          />
           {post.imageURL && (
             <img className="postImg" src={post.imageURL} alt="" />
           )}

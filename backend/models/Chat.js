@@ -22,10 +22,6 @@ var chatSchema = new Schema({
     type: Date,
     required: true,
   },
-  recieveDateTime: {
-    type: Date,
-    required: true,
-  },
 });
 
 // Compile model from schema
