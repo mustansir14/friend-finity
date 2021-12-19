@@ -51,6 +51,8 @@ export default function Comment({ comment, deleteHandler }) {
             src={
               state.fetched
                 ? state.user.profilePicURL
+                  ? state.user.profilePicURL
+                  : "assets/no-profile-pic.png"
                 : "assets/no-profile-pic.png"
             }
             alt=""

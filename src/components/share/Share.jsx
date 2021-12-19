@@ -85,18 +85,6 @@ export default function Share(props) {
                 value={fileInput}
               />
             </div>
-            <div className="shareOption">
-              <Label htmlColor="blue" className="shareIcon" />
-              <button className="shareOptionText">Tag</button>
-            </div>
-            <div className="shareOption">
-              <Room htmlColor="green" className="shareIcon" />
-              <button className="shareOptionText">Location</button>
-            </div>
-            <div className="shareOption">
-              <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
-              <button className="shareOptionText">Feelings</button>
-            </div>
           </div>
           <button className="shareButton" type="submit">
             {uploading ? (

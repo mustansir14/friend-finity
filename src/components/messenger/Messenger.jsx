@@ -1,23 +1,32 @@
-import "./messenger.css"
-import Message from "../message/Message"
+import "./messenger.css";
+import Message from "../message/Message";
 
 export default function Messenger() {
-    return (
-        <div className="messenger">
-            <div className="chatBox">
-                <div className="chatBoxWrapper">
-                    <div className="chatBoxTop">
-                        <Message/>
-                        <Message own={true}/>
-                        <Message/>
-                        <Message/>
-                    </div>
-                    <div className="chatBoxBottom">
-                        <textarea className="chatMessageInput" placeholder="Enter Message"></textarea>
-                        <button className="chatSubmitButton">Send</button>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="messenger">
+      <div className="chatBox">
+        <div className="chatBoxWrapper">
+          <div className="chatBoxTop">
+            <Message />
+            <Message own={true} />
+            <Message />
+            <Message />
+            <Message />
+            <Message own={true} />
+            <Message />
+            <Message />
+          </div>
+          <hr />
+          <div className="chatBoxBottom">
+            <input
+              className="chatMessageInput"
+              placeholder="Enter Message"
+            ></input>
+            <button className="chatSubmitButton">Send</button>
+          </div>
+          <hr />
         </div>
-    )
+      </div>
+    </div>
+  );
 }

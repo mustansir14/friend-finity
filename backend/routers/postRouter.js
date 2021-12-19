@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let Post = require("../models/Post");
+let Friend = require("../models/Friend");
 const { cloudinary } = require("../utils/cloudinary");
 
 // get all posts
@@ -16,11 +17,28 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
-// get posts based on userID
+// get posts of a particular user
 router.route("/user/:id").get((req, res) => {
   Post.find({ userID: req.params.id })
     .then((posts) => res.json(posts.reverse()))
     .catch((err) => res.status(400).json({ Error: err }));
+});
+
+// get posts of all friends of a user + the user itself (the feed basically)
+router.route("/feed/:id").get((req, res) => {
+  const userID = req.params.id;
+  Friend.find({
+    $or: [{ user1ID: userID }, { user2ID: userID }],
+  }).then((friends) => {
+    const userIDs = friends.map((friend) => {
+      if (friend.user1ID.toString() !== userID) return friend.user1ID;
+      else return friend.user2ID;
+    });
+    userIDs.push(userID);
+    return Post.find({ userID: { $in: userIDs } }).then((posts) => {
+      return res.json(posts.reverse());
+    });
+  });
 });
 
 // add post

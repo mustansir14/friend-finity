@@ -1,37 +1,47 @@
-.messenger{
-    height: calc(100vh-70px);
-    display: flex;
+.messenger {
+  display: flex;
 }
-.chatBoxBottom{
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.chatBoxBottom {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.chatBox{
-    flex: 5.5;
+.chatBox {
+  flex: 5;
 }
-.chatMessageInput{
-    width: 84%;
-    height: 60px;
-    padding: 10px;
+.chatMessageInput {
+  width: 84%;
+  padding: 10px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2c2c2c;
 }
-.chatSubmitButton{
-    width: 60px;
-    height: 60px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(66, 63, 63);
-    color: white;    
+
+.chatMessageInput:focus {
+  outline: none;
 }
-.chatBoxWrapper{
-    display: flex;
-    flex-direction: column;
+.chatSubmitButton {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #320949;
+  color: white;
 }
-.chatBoxTop
-{
-    height: 100%;
-    overflow-y: scroll;
-    padding-right: 10px;
+
+.chatSubmitButton:hover {
+  background-color: #1b0625;
+  border-color: #1b0625;
+}
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.chatBoxTop {
+  height: calc(50vh - 80px);
+  overflow-y: scroll;
+  position: sticky;
 }

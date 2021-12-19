@@ -12,7 +12,7 @@ export default function Feed({ profile = false }) {
       .get(
         profile
           ? "http://localhost:8000/posts/user/" + user._id
-          : "http://localhost:8000/posts/"
+          : "http://localhost:8000/posts/feed/" + user._id
       )
       .then((res) => {
         setPosts(res.data);

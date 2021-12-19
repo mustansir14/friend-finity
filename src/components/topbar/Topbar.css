@@ -33,6 +33,7 @@
   border-radius: 30px;
   display: flex;
   align-items: center;
+  margin-left: 9%;
 }
 .searchIcon {
   font-size: 20px !important;
@@ -67,9 +68,16 @@
   display: flex;
 }
 .topbarIconItem {
-  margin-right: 15px;
-  cursor: pointer;
   position: relative;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  border-radius: 20%;
+  margin-right: 10px;
+}
+
+.topbarIconItem:hover {
+  background-color: #212529;
 }
 .topbarIconBadge {
   width: 15px;
@@ -97,4 +105,12 @@
 .imgDropDown {
   background-color: #320949;
   border: none;
+}
+
+.dropdown-menu {
+  background-color: #201e1e;
+}
+
+.logoutBtn {
+  color: #ffffff;
 }

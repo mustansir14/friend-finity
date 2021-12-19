@@ -20,6 +20,7 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/home");
     } catch (error) {
+      console.log(error);
       const errorMsg = error.response.data.error;
       if (errorMsg === "Invalid Password") {
         setInvalidPassword(true);

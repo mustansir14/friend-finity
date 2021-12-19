@@ -28,7 +28,7 @@ export default function Post({ post, deleteHandler }) {
       setIsLiked(true);
       axios
         .post("http://localhost:8000/postlikes", {
-          userID: user._id,
+          userID: loggedInUser._id,
           postID: post._id,
         })
         .catch((error) => console.log(error));
