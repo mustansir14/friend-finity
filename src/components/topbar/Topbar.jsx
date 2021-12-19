@@ -1,6 +1,6 @@
 import "./Topbar.css";
 import "../friendRequest/friendRequest.css";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Person, Chat, Notifications } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -36,12 +36,7 @@ export default function Topbar() {
       <div className="topbarLeft">
         <span className="logo">FriendFinity</span>
       </div>
-      <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
-          <input placeholder="Search for Friend" className="searchInput" />
-        </div>
-      </div>
+      <div className="topbarCenter"></div>
       {user && (
         <div className="topbarIcons">
           <div className="dropdown">

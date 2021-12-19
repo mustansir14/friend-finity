@@ -45,3 +45,24 @@
 .sidebarHr {
   margin: 20px 0;
 }
+
+.searchbar {
+  width: 80%;
+  height: 40px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 9%;
+  margin-bottom: 9%;
+}
+.searchIcon {
+  font-size: 20px !important;
+  margin-left: 10px;
+  color: #201e1e;
+}
+
+.searchInput {
+  border: none;
+  width: 70%;
+}
