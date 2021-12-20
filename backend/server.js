@@ -3,7 +3,10 @@ var app = express();
 var mongoose = require("mongoose");
 const cors = require("cors");
 
-app.options("*", cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }));
+app.options(
+  "*",
+  cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 })
+);
 
 app.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
 
@@ -19,6 +22,7 @@ const postLikeRouter = require("./routers/postLikeRouter");
 const commentLikeRouter = require("./routers/commentLikeRouter");
 const friendRouter = require("./routers/friendRouter");
 const chatRouter = require("./routers/chatRouter");
+const shareRouter = require("./routers/shareRouter");
 
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
@@ -27,6 +31,7 @@ app.use("/postlikes", postLikeRouter);
 app.use("/commentlikes", commentLikeRouter);
 app.use("/friends", friendRouter);
 app.use("/chats", chatRouter);
+app.use("/shares", shareRouter);
 
 const dbURI = process.env.MONGO_URL;
 const port = process.env.PORT || 8000;

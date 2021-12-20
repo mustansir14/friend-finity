@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let Post = require("../models/Post");
 let Friend = require("../models/Friend");
+let Share = require("../models/Share");
 const { cloudinary } = require("../utils/cloudinary");
 
 // get all posts
@@ -24,24 +25,38 @@ router.route("/user/:id").get((req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
-// get posts of all friends of a user + the user itself (the feed basically)
-router.route("/feed/:id").get((req, res) => {
+// get posts of all friends of a user + the user + shares by friends itself (the feed basically)
+router.route("/feed/:id").get(async (req, res) => {
   const userID = req.params.id;
-  Friend.find({
+  const friends = await Friend.find({
     $or: [
       { user1ID: userID, status: "accepted" },
       { user2ID: userID, status: "accepted" },
     ],
-  }).then((friends) => {
-    const userIDs = friends.map((friend) => {
-      if (friend.user1ID.toString() !== userID) return friend.user1ID;
-      else return friend.user2ID;
-    });
-    userIDs.push(userID);
-    return Post.find({ userID: { $in: userIDs } }).then((posts) => {
-      return res.json(posts.reverse());
-    });
   });
+  const userIDs = friends.map((friend) => {
+    if (friend.user1ID.toString() !== userID) return friend.user1ID;
+    else return friend.user2ID;
+  });
+  userIDs.push(userID);
+  const posts = await Post.find({ userID: { $in: userIDs } });
+  const shares = await Share.find({ userID: { $in: userIDs } });
+  for (let x in shares) {
+    let sharedPost = await Post.findOne({ _id: shares[x].postID });
+    sharedPost["shared"] = true;
+    sharedPost["sharedUserID"] = shares[x].userID;
+    sharedPost["dateTimeShared"] = shares[x].dateTimeShared;
+    console.log(sharedPost);
+    posts.push(sharedPost);
+  }
+  posts.sort((a, b) => {
+    let a_date = a.dateTimePosted;
+    let b_date = b.dateTimePosted;
+    if (a.shared) a_date = a.dateTimeShared;
+    if (b.shared) b_date = b.dateTimeShared;
+    return a_date - b_date;
+  });
+  return res.json(posts.reverse());
 });
 
 // add post

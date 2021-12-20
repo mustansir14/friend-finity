@@ -24,6 +24,7 @@ export default function Post({ post, deleteHandler }) {
   const [updating, setUpdating] = useState(false);
   const [postText, setPostText] = useState(post.text);
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [sharing, setSharing] = useState(false);
   const inputRef = useRef();
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
@@ -83,6 +84,19 @@ export default function Post({ post, deleteHandler }) {
       }
       setUpdateLoading(false);
     }
+  };
+
+  const handleShare = async () => {
+    setSharing(true);
+    try {
+      await axios.post("http://localhost:8000/shares", {
+        postID: post._id,
+        userID: loggedInUser._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    setSharing(false);
   };
 
   useEffect(() => {
@@ -193,8 +207,13 @@ export default function Post({ post, deleteHandler }) {
             </button>
           </div>
           <div className="postBottomMiddle">
-            <button type="button" className="likeBtn">
-              <ShareIcon />
+            <button type="button" className="likeBtn" onClick={handleShare}>
+              {sharing ? (
+                <ClipLoader color="#ffffff" loading={true} size={16} />
+              ) : (
+                <ShareIcon />
+              )}
+
               <span className="btnText">Share</span>
             </button>
           </div>
