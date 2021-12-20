@@ -42,6 +42,7 @@ router.route("/feed/:id").get(async (req, res) => {
   const posts = await Post.find({ userID: { $in: userIDs } });
   const shares = await Share.find({ userID: { $in: userIDs } });
   for (let x in shares) {
+    console.log(shares[x]);
     let sharedPost = await Post.findOne({ _id: shares[x].postID });
     sharedPost["shared"] = true;
     sharedPost["sharedUserID"] = shares[x].userID;

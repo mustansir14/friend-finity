@@ -63,7 +63,6 @@ export default function Login() {
             <button className="loginButton" type="submit">
               Log In
             </button>
-            <span className="loginForgot">Forgot Password?</span>
             <button
               className="loginRegisterButton"
               onClick={() => navigate("/register")}

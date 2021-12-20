@@ -16,6 +16,9 @@ var postSchema = new Schema({
   },
   imageURL: String,
   videoURL: String,
+  shared: Boolean,
+  sharedUserID: String,
+  dateTimeShared: Date,
 });
 
 // Compile model from schema

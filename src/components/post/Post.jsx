@@ -110,6 +110,12 @@ export default function Post({ post, deleteHandler }) {
       const commentsRes = await axios.get(
         "http://localhost:8000/comments/post/" + post._id
       );
+      if (post.shared) {
+        const sharedUserRes = await axios.get(
+          "http://localhost:8000/users/" + post.sharedUserID
+        );
+        setSharedUser(sharedUserRes.data);
+      }
       setUser(userRes.data);
       setLikes(likesRes.data);
       setComments(commentsRes.data);
@@ -123,6 +129,7 @@ export default function Post({ post, deleteHandler }) {
   return (
     <div className="post">
       <div className="postWrapper">
+        {post.shared && <div className="shared">{}</div>}
         <div className="postTop">
           <div className="postTopLeft">
             <img
