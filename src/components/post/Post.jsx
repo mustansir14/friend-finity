@@ -25,6 +25,7 @@ export default function Post({ post, deleteHandler }) {
   const [postText, setPostText] = useState(post.text);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [sharing, setSharing] = useState(false);
+  const [sharedUser, setSharedUser] = useState();
   const inputRef = useRef();
   const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
@@ -129,7 +130,25 @@ export default function Post({ post, deleteHandler }) {
   return (
     <div className="post">
       <div className="postWrapper">
-        {post.shared && <div className="shared">{}</div>}
+        {sharedUser && (
+          <>
+            <img
+              className="postProfileImg"
+              src={
+                fetched && user.profilePicURL
+                  ? user.profilePicURL
+                  : "assets/no-profile-pic.png"
+              }
+              alt=""
+            />
+            <div className="shared">
+              {sharedUser.firstName +
+                " " +
+                sharedUser.lastName +
+                " shared this post."}
+            </div>
+          </>
+        )}
         <div className="postTop">
           <div className="postTopLeft">
             <img
