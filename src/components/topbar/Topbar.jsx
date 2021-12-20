@@ -83,15 +83,6 @@ export default function Topbar() {
               </form>
             </div>
           </div>
-
-          <button className="topbarIconItem">
-            <Chat />
-            <span className="topbarIconBadge">2</span>
-          </button>
-          <button className="topbarIconItem">
-            <Notifications />
-            <span className="topbarIconBadge">1</span>
-          </button>
         </div>
       )}
       <div className="topbarRight">

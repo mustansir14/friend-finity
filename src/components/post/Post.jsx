@@ -113,7 +113,11 @@ export default function Post({ post, deleteHandler }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={fetched ? user.profilePicURL : "assets/no-profile-pic.png"}
+              src={
+                fetched && user.profilePicURL
+                  ? user.profilePicURL
+                  : "assets/no-profile-pic.png"
+              }
               alt=""
             />
             <span className="postUsername">
