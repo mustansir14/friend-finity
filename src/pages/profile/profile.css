@@ -50,3 +50,27 @@
   display: flex;
   margin-top: 5%;
 }
+
+.postEditBtn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.postEditBtn:hover {
+  background-color: #320949;
+  border-radius: 20%;
+}
+
+.profileName {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.profileName:focus {
+  outline: none;
+}

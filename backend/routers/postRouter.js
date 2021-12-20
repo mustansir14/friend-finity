@@ -28,7 +28,10 @@ router.route("/user/:id").get((req, res) => {
 router.route("/feed/:id").get((req, res) => {
   const userID = req.params.id;
   Friend.find({
-    $or: [{ user1ID: userID }, { user2ID: userID }],
+    $or: [
+      { user1ID: userID, status: "accepted" },
+      { user2ID: userID, status: "accepted" },
+    ],
   }).then((friends) => {
     const userIDs = friends.map((friend) => {
       if (friend.user1ID.toString() !== userID) return friend.user1ID;

@@ -24,7 +24,11 @@ router.route("/:id").put(async (req, res) => {
     req.body.password = await bcrypt.hash(req.body.password, salt);
   }
   User.updateOne({ _id: req.params.id }, req.body)
-    .then((user) => res.json(user))
+    .then((user) => {
+      return User.findOne({ _id: req.params.id })
+        .then((user) => res.json({ user: user }))
+        .catch((error) => console.log(error));
+    })
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
