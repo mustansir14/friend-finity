@@ -13,13 +13,10 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://" + process.env.URL + "/users/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const res = await axios.post("http://35.174.6.220/users/login", {
+        email: email,
+        password: password,
+      });
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/home");
     } catch (error) {

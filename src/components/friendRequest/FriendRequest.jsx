@@ -14,7 +14,7 @@ export default function FriendRequest({ friendRequest }) {
     setLoading(true);
     try {
       await axios.put(
-        "http://" + process.env.URL + "/friends/accept/" + friendRequest._id
+        "http://35.174.6.220/friends/accept/" + friendRequest._id
       );
       setIsFriend(true);
     } catch (error) {
@@ -26,10 +26,10 @@ export default function FriendRequest({ friendRequest }) {
   useEffect(() => {
     async function fetchData() {
       const userRes = await axios.get(
-        "http://" + process.env.URL + "/users/" + friendRequest.user1ID
+        "http://35.174.6.220/users/" + friendRequest.user1ID
       );
       const friendRes = await axios.get(
-        "http://" + process.env.URL + "/friends/" + friendRequest._id
+        "http://35.174.6.220/friends/" + friendRequest._id
       );
       if (friendRes.data.status === "accepted") setIsFriend(true);
       setUser(userRes.data);

@@ -28,7 +28,7 @@ export default function Register() {
       if (password === repPassword) {
         setErrorMsg("");
         try {
-          const res = await axios.post("http://" + process.env.URL + "/users", {
+          const res = await axios.post("http://35.174.6.220/users", {
             firstName: firstName,
             lastName: lastName,
             email: email,

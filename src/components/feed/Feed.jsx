@@ -11,8 +11,8 @@ export default function Feed({ profile = false }) {
     axios
       .get(
         profile
-          ? "http://" + process.env.URL + "/posts/user/" + user._id
-          : "http://" + process.env.URL + "/posts/feed/" + user._id
+          ? "http://35.174.6.220/posts/user/" + user._id
+          : "http://35.174.6.220/posts/feed/" + user._id
       )
       .then((res) => {
         setPosts(res.data);

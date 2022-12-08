@@ -12,7 +12,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     axios
-      .get("http://" + process.env.URL + "/friends/notUser/" + loggedInUser._id)
+      .get("http://35.174.6.220/friends/notUser/" + loggedInUser._id)
       .then((res) => {
         setAllUsers([...res.data]);
         setUsers([...res.data]);

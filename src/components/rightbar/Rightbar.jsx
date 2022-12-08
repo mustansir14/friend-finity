@@ -11,7 +11,7 @@ export default function Rightbar({ profile }) {
 
   useEffect(() => {
     axios
-      .get("http://" + process.env.URL + "/friends/user/" + loggedInUser._id)
+      .get("http://35.174.6.220/friends/user/" + loggedInUser._id)
       .then((res) => {
         setFriends(res.data);
       })

@@ -12,7 +12,7 @@ export default function AddFriend({ user }) {
   const handleClick = async () => {
     setLoading(true);
     try {
-      await axios.post("http://" + process.env.URL + "/friends/request", {
+      await axios.post("http://35.174.6.220/friends/request", {
         user1ID: loggedInUser._id,
         user2ID: user._id,
       });

@@ -33,7 +33,7 @@ export default function Messenger({ toUser }) {
     setMessages([...messages, newMsg]);
     setInputMsg("");
     try {
-      await axios.post("http://" + process.env.URL + "/chats", newMsg);
+      await axios.post("http://35.174.6.220/chats", newMsg);
     } catch (error) {
       console.log(error);
     }
