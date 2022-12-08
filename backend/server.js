@@ -3,20 +3,9 @@ var app = express();
 var mongoose = require("mongoose");
 const cors = require("cors");
 
-app.options(
-  "*",
-  cors(
-    { origin: "http://localhost:3000", optionsSuccessStatus: 200 },
-    { origin: "http://3.88.228.80/", optionsSuccessStatus: 200 }
-  )
-);
+app.options("*", cors());
 
-app.use(
-  cors(
-    { origin: "http://localhost:3000", optionsSuccessStatus: 200 },
-    { origin: "http://3.88.228.80/", optionsSuccessStatus: 200 }
-  )
-);
+app.use(cors());
 
 require("dotenv/config");
 
