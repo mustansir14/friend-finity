@@ -30,10 +30,13 @@ export default function Profile() {
       }
       setUpdateLoading(true);
       try {
-        const res = await axios.put("http://localhost:8000/users/" + user._id, {
-          firstName: username.split(" ")[0],
-          lastName: username.split(" ")[1],
-        });
+        const res = await axios.put(
+          "http://" + process.env.URL + "/users/" + user._id,
+          {
+            firstName: username.split(" ")[0],
+            lastName: username.split(" ")[1],
+          }
+        );
         localStorage.setItem("user", JSON.stringify(res.data.user));
         user = res.data.user;
       } catch (error) {

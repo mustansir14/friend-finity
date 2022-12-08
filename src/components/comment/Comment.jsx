@@ -23,7 +23,9 @@ export default function Comment({ comment, deleteHandler }) {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      await axios.delete("http://localhost:8000/comments/" + comment._id);
+      await axios.delete(
+        "http://" + process.env.URL + "/comments/" + comment._id
+      );
       deleteHandler(comment._id);
     } catch (error) {
       console.log(error);
@@ -42,9 +44,12 @@ export default function Comment({ comment, deleteHandler }) {
       }
       setUpdateLoading(true);
       try {
-        await axios.put("http://localhost:8000/comments/" + comment._id, {
-          text: commentText,
-        });
+        await axios.put(
+          "http://" + process.env.URL + "/comments/" + comment._id,
+          {
+            text: commentText,
+          }
+        );
       } catch (error) {
         console.log(error);
       }
@@ -55,10 +60,10 @@ export default function Comment({ comment, deleteHandler }) {
   useEffect(() => {
     async function fetchData() {
       const userRes = await axios.get(
-        "http://localhost:8000/users/" + comment.userID
+        "http://" + process.env.URL + "/users/" + comment.userID
       );
       const commentLikesRes = await axios.get(
-        "http://localhost:8000/commentlikes/comment/" + comment._id
+        "http://" + process.env.URL + "/commentlikes/comment/" + comment._id
       );
       setState({
         user: userRes.data,

@@ -10,7 +10,14 @@ export default function Messenger({ toUser }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/chats/" + loggedInUser._id + "/" + toUser._id)
+      .get(
+        "http://" +
+          process.env.URL +
+          "/chats/" +
+          loggedInUser._id +
+          "/" +
+          toUser._id
+      )
       .then((res) => setMessages(res.data))
       .catch((error) => console.log(error));
   }, [toUser]);
@@ -26,7 +33,7 @@ export default function Messenger({ toUser }) {
     setMessages([...messages, newMsg]);
     setInputMsg("");
     try {
-      await axios.post("http://localhost:8000/chats", newMsg);
+      await axios.post("http://" + process.env.URL + "/chats", newMsg);
     } catch (error) {
       console.log(error);
     }

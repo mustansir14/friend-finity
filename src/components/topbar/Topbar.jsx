@@ -23,7 +23,9 @@ export default function Topbar() {
     if (!user) return;
     try {
       axios
-        .get("http://localhost:8000/friends/user/" + user._id + "/pending")
+        .get(
+          "http://" + process.env.URL + "/friends/user/" + user._id + "/pending"
+        )
         .then((res) => {
           setFriendRequests(res.data);
         });

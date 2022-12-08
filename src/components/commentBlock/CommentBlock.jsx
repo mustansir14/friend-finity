@@ -27,7 +27,10 @@ export default function CommentBlock({ comments, updateComments, postID }) {
         postID: postID,
         text: commentText,
       };
-      const res = await axios.post("http://localhost:8000/comments", data);
+      const res = await axios.post(
+        "http://" + process.env.URL + "/comments",
+        data
+      );
       comments.push(res.data);
       updateComments(comments);
       console.log("uploaded");

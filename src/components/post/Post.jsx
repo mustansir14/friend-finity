@@ -35,7 +35,7 @@ export default function Post({ post, deleteHandler }) {
       setLikes([...likes]);
       setIsLiked(true);
       axios
-        .post("http://localhost:8000/postlikes", {
+        .post("http://" + process.env.URL + "/postlikes", {
           userID: loggedInUser._id,
           postID: post._id,
         })
@@ -45,7 +45,7 @@ export default function Post({ post, deleteHandler }) {
       setLikes([...likes]);
       setIsLiked(false);
       axios
-        .delete("http://localhost:8000/postlikes/" + like._id)
+        .delete("http://" + process.env.URL + "/postlikes/" + like._id)
         .catch((error) => console.log(error));
     }
   };
@@ -58,7 +58,7 @@ export default function Post({ post, deleteHandler }) {
   const deletePost = async () => {
     setDeleting(true);
     try {
-      await axios.delete("http://localhost:8000/posts/" + post._id);
+      await axios.delete("http://" + process.env.URL + "/posts/" + post._id);
       deleteHandler(post._id);
     } catch (error) {
       console.log(error);
@@ -77,7 +77,7 @@ export default function Post({ post, deleteHandler }) {
       }
       setUpdateLoading(true);
       try {
-        await axios.put("http://localhost:8000/posts/" + post._id, {
+        await axios.put("http://" + process.env.URL + "/posts/" + post._id, {
           text: postText,
         });
       } catch (error) {
@@ -90,7 +90,7 @@ export default function Post({ post, deleteHandler }) {
   const handleShare = async () => {
     setSharing(true);
     try {
-      await axios.post("http://localhost:8000/shares", {
+      await axios.post("http://" + process.env.URL + "/shares", {
         postID: post._id,
         userID: loggedInUser._id,
       });
@@ -103,17 +103,17 @@ export default function Post({ post, deleteHandler }) {
   useEffect(() => {
     async function fetchData() {
       const userRes = await axios.get(
-        "http://localhost:8000/users/" + post.userID
+        "http://" + process.env.URL + "/users/" + post.userID
       );
       const likesRes = await axios.get(
-        "http://localhost:8000/postlikes/post/" + post._id
+        "http://" + process.env.URL + "/postlikes/post/" + post._id
       );
       const commentsRes = await axios.get(
-        "http://localhost:8000/comments/post/" + post._id
+        "http://" + process.env.URL + "/comments/post/" + post._id
       );
       if (post.shared) {
         const sharedUserRes = await axios.get(
-          "http://localhost:8000/users/" + post.sharedUserID
+          "http://" + process.env.URL + "/users/" + post.sharedUserID
         );
         setSharedUser(sharedUserRes.data);
       }

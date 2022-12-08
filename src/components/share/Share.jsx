@@ -22,7 +22,10 @@ export default function Share(props) {
       };
       if (postText) data["text"] = postText;
       if (previewSource) data["imageURL"] = previewSource;
-      const res = await axios.post("http://localhost:8000/posts", data);
+      const res = await axios.post(
+        "http://" + process.env.URL + "/posts",
+        data
+      );
       props.posts.unshift(res.data);
       props.onChange(props.posts);
       console.log("uploaded");
